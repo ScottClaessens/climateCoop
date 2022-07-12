@@ -1,0 +1,76 @@
+\renewcommand{\appendixname}{Supplementary Materials}
+\renewcommand{\thefigure}{S\arabic{figure}} \setcounter{figure}{0}
+\renewcommand{\thetable}{S\arabic{table}} \setcounter{table}{0}
+\renewcommand{\theequation}{S\arabic{table}} \setcounter{equation}{0}
+
+#
+
+## Supplementary Results
+
+### Confirmatory factor analyses (CFAs)
+
+Before testing our hypotheses, we fitted two CFA models. In order to assess the "cooperative phenotype" (Peysakhovich et al., 2014), we fitted a confirmatory factor analysis model that loaded participant responses across our five game outcomes (Cronbach's $\alpha$ = `r printnum(alpha1$total$raw_alpha)`): the Dictator Game, Trust Game (Give), Trust Game (Return), the Public Goods Game, and the Stag-Hunt Game. Instead of removing participants who failed the games' respective comprehension questions by listwise deletion, we took advantage of the structural equation modelling approach and controlled for comprehension by including each different game's comprehension question in the model. We then investigated model fit using two popular absolute measures of fit. The Root Mean Square Error of Approximation (RMSEA) was `r printnum(fitMeasures(cfa1)['rmsea.scaled'])`, indicating a good model fit (MacCallum, Browne, & Sugawara, 1996), and the Standardized Root Mean Square Residual (SRMR) was `r printnum(fitMeasures(cfa1)['srmr'])`, also indicating a good model fit (Hu & Bentler, 1999). This step was important to validate our further analyses.
+
+We then fitted a CFA model that loaded participant responses to our three different measures of climate change belief (Cronbach's $\alpha$ = `r printnum(alpha2$total$raw_alpha)`): whether climate change is real, whether it is caused by humans, and the degree to which it is a concern. The model was just-identified, and therefore was perfectly fit to the data (RMSEA = `r printnum(fitMeasures(cfa2)['rmsea.scaled'])`; SRMR = `r printnum(fitMeasures(cfa2)['srmr'])`).
+
+### Proportion of variance explained
+
+Analyses of the variation explained by our models (R^2^) reveal that cooperative phenotype alone accounts for `r printnum(r2data$r2[1]*100)`% of the variation in pro-environmental behaviour and `r printnum(r2data$r2[15]*100)`% of the variation in climate change belief. Similar patterns hold for both of these models: while the variation explained by cooperative phenotype is small, it is comparable to that explained by other variables in our sample that have been shown to be significant predictors of climate change belief, such as age, gender, and ethnicity (Hornsey et al., 2016; Supplementary Figure \@ref(fig:r2Plot)). For example, in our sample, age accounts for `r printnum(r2data$r2[16]*100)`% of the variation in climate change beliefs, while gender accounts for `r printnum(r2data$r2[17]*100)`% and ethnicity accounts for `r printnum(r2data$r2[18]*100)`% of the variation in comparison to `r printnum(r2data$r2[15]*100)`% for the cooperative phenotype. However, not only does political party support attenuate the effect of cooperative phenotype on both climate change belief and pro-environmental behaviour, it also accounts for a far larger proportion of the variance in these variables: `r printnum(r2data$r2[19]*100)`% for climate change belief, and `r printnum(r2data$r2[5]*100)`% for pro-environmental behaviour.
+
+### Main analyses with exclusions
+
+We pre-registered that we would exclude participants who failed _any_ of the comprehension questions for the four cooperation games. This resulted in a reduced sample of `r nrow(dExc)` participants. 
+
+When including only these participants, we found a significant positive relationship between the cooperative phenotype and self-reported pro-environmental behaviour (unstandardised _b_ = `r printnum(parameterEstimates(semExc1)[6,4])`, 95% CI [`r printnum(parameterEstimates(semExc1)[6,8])` `r printnum(parameterEstimates(semExc1)[6,9])`], _r_ = `r printnum(sqrt(inspect(semExc1, "R2")["Env.SacMade.T09"]))`, _p_ = `r printp(parameterEstimates(semExc1)[6,7])`), and a significant positive relationship between the cooperative phenotype and climate change belief (unstandardised _b_ = `r printnum(parameterEstimates(semExc2)[9,4])`, 95% CI [`r printnum(parameterEstimates(semExc2)[9,8])` `r printnum(parameterEstimates(semExc2)[9,9])`], _r_ = `r printnum(sqrt(inspect(semExc2, "R2")["ccb"]))`, _p_ = `r printp(parameterEstimates(semExc2)[9,7])`).
+
+We then tested a mediation model with pro-environmental behaviour mediating the relationship between the cooperative phenotype and climate change belief (as in Figure \@ref(fig:medPlot1)). We found a significant direct effect of the cooperative phenotype on climate change belief (_b_ = `r printnum(parameterEstimates(medExc1)[9,4])`, 95% CI [`r printnum(parameterEstimates(medExc1)[9,8])` `r printnum(parameterEstimates(medExc1)[9,9])`], standardised $\beta$ = `r printnum(standardizedSolution(medExc1)[9,4])`, _p_ = `r printp(parameterEstimates(medExc1)[9,7])`). We also found that the cooperative phenotype predicted pro-environmental behaviour (_b_ = `r printnum(parameterEstimates(medExc1)[11,4])`, 95% CI [`r printnum(parameterEstimates(medExc1)[11,8])` `r printnum(parameterEstimates(medExc1)[11,9])`], standardised $\beta$ = `r printnum(standardizedSolution(medExc1)[11,4])`, _p_ = `r printp(parameterEstimates(medExc1)[11,7])`), and pro-environmental behaviour predicted climate change belief (_b_ = `r printnum(parameterEstimates(medExc1)[10,4])`, 95% CI [`r printnum(parameterEstimates(medExc1)[10,8])` `r printnum(parameterEstimates(medExc1)[10,9])`], standardised $\beta$ = `r printnum(standardizedSolution(medExc1)[10,4])`, _p_ `r printp(parameterEstimates(medExc1)[10,7])`).
+
+Finally, we fitted an exploratory reversed mediation model, where climate change belief mediated the relationship between the cooperative phenotype and pro-environmental behaviour (as in Figure \@ref(fig:medPlot2)). We found no direct effect of the cooperative phenotype on pro-environmental behaviour once we included climate change belief as a mediator (_b_ = `r printnum(parameterEstimates(medExc2)[11,4])`, 95% CI [`r printnum(parameterEstimates(medExc2)[11,8])` `r printnum(parameterEstimates(medExc2)[11,9])`], standardised $\beta$ = `r printnum(standardizedSolution(medExc2)[11,4])`, _p_ = `r printp(parameterEstimates(medExc2)[11,7])`). However, the cooperative phenotype predicted climate change belief (_b_ = `r printnum(parameterEstimates(medExc2)[9,4])`, 95% CI [`r printnum(parameterEstimates(medExc2)[9,8])` `r printnum(parameterEstimates(medExc2)[9,9])`], standardised $\beta$ = `r printnum(standardizedSolution(medExc1)[9,4])`, _p_ = `r printp(parameterEstimates(medExc2)[9,7])`), and climate change belief predicted pro-environmental behaviour (_b_ = `r printnum(parameterEstimates(medExc2)[10,4])`, 95% CI [`r printnum(parameterEstimates(medExc2)[10,8])` `r printnum(parameterEstimates(medExc2)[10,9])`], standardised $\beta$ = `r printnum(standardizedSolution(medExc2)[10,4])`, _p_ `r printp(parameterEstimates(medExc2)[10,7])`).
+
+### Main analyses with Public Goods Game
+
+We also pre-registered that we would run versions of our models that additionally replaced the cooperative phenotype with cooperative behaviour in the Public Goods Game (PGG; i.e., amount contributed to the shared project). We report these results here.
+
+We found a significant positive relationship between PGG cooperation and self-reported pro-environmental behaviour (unstandardised _b_ = `r printnum(parameterEstimates(semPGG1)[1,4])`, 95% CI [`r printnum(parameterEstimates(semPGG1)[1,8])` `r printnum(parameterEstimates(semPGG1)[1,9])`], _r_ = `r printnum(sqrt(inspect(semPGG1, "R2")["Env.SacMade.T09"]))`, _p_ = `r printp(parameterEstimates(semPGG1)[1,7])`), and a significant positive relationship between PGG cooperation and climate change belief (unstandardised _b_ = `r printnum(parameterEstimates(semPGG2)[4,4])`, 95% CI [`r printnum(parameterEstimates(semPGG2)[4,8])` `r printnum(parameterEstimates(semPGG2)[4,9])`], _r_ = `r printnum(sqrt(inspect(semPGG2, "R2")["ccb"]))`, _p_ = `r printp(parameterEstimates(semPGG2)[4,7])`).
+
+We then tested a mediation model with pro-environmental behaviour mediating the relationship between PGG cooperation and climate change belief. We found no direct effect of PGG cooperation on climate change belief (_b_ = `r printnum(parameterEstimates(medPGG1)[4,4])`, 95% CI [`r printnum(parameterEstimates(medPGG1)[4,8])` `r printnum(parameterEstimates(medPGG1)[4,9])`], standardised $\beta$ = `r printnum(standardizedSolution(medPGG1)[4,4])`, _p_ = `r printp(parameterEstimates(medPGG1)[4,7])`). However, we found that PGG cooperation predicted pro-environmental behaviour (_b_ = `r printnum(parameterEstimates(medPGG1)[6,4])`, 95% CI [`r printnum(parameterEstimates(medPGG1)[6,8])` `r printnum(parameterEstimates(medPGG1)[6,9])`], standardised $\beta$ = `r printnum(standardizedSolution(medPGG1)[6,4])`, _p_ = `r printp(parameterEstimates(medPGG1)[6,7])`), and pro-environmental behaviour predicted climate change belief (_b_ = `r printnum(parameterEstimates(medPGG1)[5,4])`, 95% CI [`r printnum(parameterEstimates(medPGG1)[5,8])` `r printnum(parameterEstimates(medPGG1)[5,9])`], standardised $\beta$ = `r printnum(standardizedSolution(medPGG1)[5,4])`, _p_ `r printp(parameterEstimates(medPGG1)[5,7])`).
+
+Finally, we fitted an exploratory reversed mediation model, where climate change belief mediated the relationship between PGG cooperation and pro-environmental behaviour. We found no direct effect of PGG cooperation on pro-environmental behaviour (_b_ = `r printnum(parameterEstimates(medPGG2)[6,4])`, 95% CI [`r printnum(parameterEstimates(medPGG2)[6,8])` `r printnum(parameterEstimates(medPGG2)[6,9])`], standardised $\beta$ = `r printnum(standardizedSolution(medPGG2)[6,4])`, _p_ = `r printp(parameterEstimates(medPGG2)[6,7])`). However, PGG cooperation predicted climate change belief (_b_ = `r printnum(parameterEstimates(medPGG2)[4,4])`, 95% CI [`r printnum(parameterEstimates(medPGG2)[4,8])` `r printnum(parameterEstimates(medPGG2)[4,9])`], standardised $\beta$ = `r printnum(standardizedSolution(medPGG1)[4,4])`, _p_ = `r printp(parameterEstimates(medPGG2)[4,7])`), and climate change belief predicted pro-environmental behaviour (_b_ = `r printnum(parameterEstimates(medPGG2)[5,4])`, 95% CI [`r printnum(parameterEstimates(medPGG2)[5,8])` `r printnum(parameterEstimates(medPGG2)[5,9])`], standardised $\beta$ = `r printnum(standardizedSolution(medPGG2)[5,4])`, _p_ `r printp(parameterEstimates(medPGG2)[5,7])`).
+
+\newpage
+
+## Supplementary Figures
+
+(ref:r2PlotCaption) _Histograms comparing the proportion of variance in our dependent variables explained (R^2^) by the cooperative phenotype, various socio-demographic and personality controls individually, and their combination in the full model._
+
+```{r r2Plot, echo=FALSE, warning=F, message=F, fig.width=6, fig.height=4, fig.cap="(ref:r2PlotCaption)"}
+readd(r2Plot)
+```
+
+\newpage
+
+## Supplementary Tables
+
+(ref:itemTableCaption) Self-report items from the New Zealand Attitudes and Values Study.
+
+```{r itemTable, echo=F, warning=F, message=F}
+kable(
+  readd(itemTable), format = "latex",
+  booktabs = TRUE, longtable = TRUE,
+  caption = "(ref:itemTableCaption)"
+  ) %>%
+  column_spec(1, width = "10em") %>%
+  column_spec(2, width = "28em")
+```
+
+\newpage
+
+## Supplementary References
+
+Hornsey, M. J., Harris, E. A., Bain, P. G., & Fielding, K. S. (2016). Meta-analyses of the determinants and outcomes of belief in climate change. *Nature Climate Change*, 6(6), 622–626. https://doi.org/10.1038/nclimate2943
+
+Hu, L., & Bentler, P. M. (1999). Cutoff criteria for fit indexes in covariance structure analysis: Conventional criteria versus new alternatives. *Structural Equation Modeling*, 6(1), 1---55. https://doi.org/10.1080/10705519909540118
+
+MacCallum, R. C., Browne, M. W., & Sugawara, H. M. (1996). Power analysis and determination of sample size for covariance structure modeling. *Psychological Methods*, 1(2), 130---149. https://doi.org/10.1037/1082-989x.1.2.130
+
+Peysakhovich, A., Nowak, M. A., & Rand, D. G. (2014). Humans display a 'cooperative phenotype' that is domain general and temporally stable. *Nature Communications*, 5(1), 1---8. https://doi.org/10.1038/ncomms5939

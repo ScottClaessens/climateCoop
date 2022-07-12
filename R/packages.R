@@ -1,0 +1,12 @@
+# packages
+library(cowplot)
+library(drake)
+library(fastDummies)
+library(haven)
+library(kableExtra)
+library(knitr)
+library(lavaan)
+library(papaja)
+library(psych)
+library(sjlabelled)
+library(tidyverse)
